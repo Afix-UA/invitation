@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7eee9" />
+  <title>Коля & Аня — весільне запрошення</title>
+  <style>
+    :root {
+      --rose: #dba9ad;
+      --rose-dark: #b77d83;
+      --blush: #f7e8e7;
+      --cream: #fffaf4;
+      --sage: #b8c5ae;
+      --sage-dark: #71806c;
+      --lavender: #d8cee6;
+      --ink: #4d4545;
+      --muted: #746969;
+      --white-glass: rgba(255, 255, 255, 0.7);
+      --shadow: 0 24px 70px rgba(119, 87, 87, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, rgba(216, 206, 230, 0.65), transparent 28%),
+        radial-gradient(circle at 90% 6%, rgba(219, 169, 173, 0.48), transparent 25%),
+        radial-gradient(circle at 84% 88%, rgba(184, 197, 174, 0.45), transparent 30%),
+        linear-gradient(145deg, var(--cream), var(--blush));
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: -1;
+      animation: drift 11s ease-in-out infinite alternate;
+    }
+
+    body::before {
+      top: -130px;
+      left: -90px;
+      background: var(--lavender);
+    }
+
+    body::after {
+      right: -120px;
+      bottom: -120px;
+      background: var(--sage);
+      animation-delay: -4s;
+    }
+
+    @keyframes drift {
+      to { transform: translate3d(24px, 20px, 0) scale(1.08); }
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    .invitation {
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100vh - 70px);
+      border: 1px solid rgba(255,255,255,.88);
+      border-radius: 36px;
+      background: var(--white-glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .invitation::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(183, 125, 131, 0.25);
+      border-radius: 27px;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .botanical {
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      opacity: .66;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .botanical.top { top: -80px; right: -60px; transform: rotate(9deg); }
+    .botanical.bottom { bottom: -85px; left: -70px; transform: rotate(196deg); }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 690px;
+      padding: 80px 24px 56px;
+    }
+
+    .eyebrow {
+      margin: 0 0 19px;
+      color: var(--sage-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .monogram {
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(183,125,131,.42);
+      background: rgba(255,250,244,.72);
+      color: var(--rose-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      letter-spacing: .05em;
+      box-shadow: 0 14px 30px rgba(119,87,87,.10);
+    }
+
+    h1 {
+      margin: 0;
+      color: #5a4a4c;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(58px, 11vw, 126px);
+      font-weight: 400;
+      line-height: .84;
+      letter-spacing: -.055em;
+      text-wrap: balance;
+    }
+
+    h1 .amp {
+      display: inline-block;
+      margin: 0 .13em;
+      color: var(--rose-dark);
+      font-size: .56em;
+      font-style: italic;
+      transform: translateY(-.13em);
+    }
+
+    .lead {
+      max-width: 640px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 3vw, 29px);
+      line-height: 1.5;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: min(410px, 72vw);
+      margin: 32px auto;
+      color: var(--rose-dark);
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, rgba(183,125,131,.6));
+    }
+
+    .divider::after { transform: scaleX(-1); }
+
+    .heart {
+      font-size: 17px;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      50% { transform: scale(1.18); }
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      width: min(820px, 100%);
+      margin: 0 auto;
+    }
+
+    .detail-card {
+      padding: 20px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.9);
+      background: rgba(255,255,255,.52);
+      box-shadow: 0 13px 32px rgba(119,87,87,.08);
+    }
+
+    .detail-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--sage-dark);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .detail-card strong {
+      display: block;
+      color: #5d5152;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 3vw, 27px);
+      font-weight: 400;
+    }
+
+    .countdown-wrap {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px 70px;
+    }
+
+    .countdown-title {
+      margin: 0 0 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      width: min(610px, 100%);
+      margin: 0 auto;
+    }
+
+    .time-box {
+      padding: 18px 8px 16px;
+      text-align: center;
+      border: 1px solid rgba(183,125,131,.22);
+      border-radius: 20px;
+      background: rgba(255,250,244,.62);
+    }
+
+    .time-box b {
+      display: block;
+      color: var(--rose-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 5vw, 42px);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .time-box small {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+    .button:focus-visible { outline: 3px solid rgba(183,125,131,.35); outline-offset: 3px; }
+
+    .button.primary {
+      color: white;
+      background: linear-gradient(135deg, var(--rose-dark), #c99499);
+      box-shadow: 0 12px 25px rgba(183,125,131,.28);
+    }
+
+    .button.secondary {
+      color: var(--sage-dark);
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(113,128,108,.23);
+    }
+
+    .note {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 0 30px 50px;
+      text-align: center;
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      font-style: italic;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 26px;
+      z-index: 20;
+      max-width: calc(100% - 32px);
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(77,69,69,.94);
+      box-shadow: 0 12px 28px rgba(77,69,69,.22);
+      opacity: 0;
+      transform: translate(-50%, 20px);
+      pointer-events: none;
+      transition: .25s ease;
+      font-size: 14px;
+    }
+
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 720px) {
+      .page { width: min(100% - 18px, 1120px); padding: 9px 0; }
+      .invitation { min-height: calc(100vh - 18px); border-radius: 27px; }
+      .invitation::before { inset: 9px; border-radius: 21px; }
+      .hero { min-height: auto; padding: 72px 18px 44px; }
+      h1 { line-height: .96; }
+      h1 .amp { display: block; margin: .12em 0; transform: none; }
+      .lead { margin-top: 22px; }
+      .details { grid-template-columns: 1fr; width: min(410px, 100%); }
+      .detail-card { padding: 16px; }
+      .countdown-wrap { padding: 0 18px 58px; }
+      .countdown { gap: 7px; }
+      .time-box { padding: 14px 4px 12px; border-radius: 16px; }
+      .time-box small { font-size: 8px; }
+      .botanical { width: 230px; height: 230px; }
+      .note { padding-bottom: 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="invitation" aria-label="Весільне запрошення Колі та Ані">
+      <svg class="botanical top" viewBox="0 0 300 300" aria-hidden="true">
+        <g fill="none" stroke-linecap="round">
+          <path d="M244 12C188 66 167 129 153 230" stroke="#8da082" stroke-width="3" opacity=".75"/>
+          <path d="M209 54c-27-2-43 15-50 36 25 2 44-11 50-36Z" fill="#c8d4bf" stroke="#8da082" stroke-width="1.5"/>
+          <path d="M182 105c-25 4-39 22-40 44 24-3 39-19 40-44Z" fill="#b8c5ae" stroke="#8da082" stroke-width="1.5"/>
+          <path d="M167 158c-21 8-31 26-27 46 21-7 32-24 27-46Z" fill="#c8d4bf" stroke="#8da082" stroke-width="1.5"/>
+          <path d="M224 30c9 18 8 37-6 53-11-17-10-36 6-53Z" fill="#ead8d9" stroke="#c7969b" stroke-width="1.5"/>
+          <circle cx="153" cy="232" r="7" fill="#d8cee6" stroke="#a89bb8" stroke-width="1.5"/>
+          <circle cx="143" cy="222" r="5" fill="#f0dfe0" stroke="#c7969b" stroke-width="1.2"/>
+        </g>
+      </svg>
+
+      <svg class="botanical bottom" viewBox="0 0 300 300" aria-hidden="true">
+        <g fill="none" stroke-linecap="round">
+          <path d="M244 12C188 66 167 129 153 230" stroke="#8da082" stroke-width="3" opacity=".75"/>
+          <path d="M209 54c-27-2-43 15-50 36 25 2 44-11 50-36Z" fill="#c8d4bf" stroke="#8da082" stroke-width="1.5"/>
+          <path d="M182 105c-25 4-39 22-40 44 24-3 39-19 40-44Z" fill="#b8c5ae" stroke="#8da082" stroke-width="1.5"/>
+          <path d="M167 158c-21 8-31 26-27 46 21-7 32-24 27-46Z" fill="#c8d4bf" stroke="#8da082" stroke-width="1.5"/>
+          <path d="M224 30c9 18 8 37-6 53-11-17-10-36 6-53Z" fill="#ead8d9" stroke="#c7969b" stroke-width="1.5"/>
+          <circle cx="153" cy="232" r="7" fill="#d8cee6" stroke="#a89bb8" stroke-width="1.5"/>
+          <circle cx="143" cy="222" r="5" fill="#f0dfe0" stroke="#c7969b" stroke-width="1.2"/>
+        </g>
+      </svg>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Запрошення на весілля</p>
+          <div class="monogram" aria-hidden="true">К &amp; А</div>
+          <h1>Коля <span class="amp">&amp;</span> Аня</h1>
+          <p class="lead">Запрошуємо вас розділити з нами день, коли дві історії стануть однією.</p>
+
+          <div class="divider"><span class="heart">♡</span></div>
+
+          <div class="details">
+            <div class="detail-card">
+              <span>Дата</span>
+              <strong>26 червня 2026</strong>
+            </div>
+            <div class="detail-card">
+              <span>Початок</span>
+              <strong>13:00</strong>
+            </div>
+            <div class="detail-card">
+              <span>Місце церемонії</span>
+              <strong>«Романтика»</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="countdown-wrap" aria-label="Зворотний відлік до весілля">
+        <p class="countdown-title" id="countdown-title">До нашого свята залишилося</p>
+        <div class="countdown">
+          <div class="time-box"><b id="days">00</b><small>днів</small></div>
+          <div class="time-box"><b id="hours">00</b><small>годин</small></div>
+          <div class="time-box"><b id="minutes">00</b><small>хвилин</small></div>
+          <div class="time-box"><b id="seconds">00</b><small>секунд</small></div>
+        </div>
+
+        <div class="actions">
+          <button class="button primary" id="calendarButton" type="button">Додати в календар</button>
+          <button class="button secondary" id="copyButton" type="button">Скопіювати деталі</button>
+        </div>
+      </section>
+
+      <p class="note">З любов’ю та передчуттям зустрічі — Коля та Аня</p>
+    </article>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const eventDate = new Date('2026-06-26T13:00:00+03:00');
+    const pad = (value) => String(value).padStart(2, '0');
+
+    function updateCountdown() {
+      const now = new Date();
+      const difference = eventDate - now;
+      const title = document.getElementById('countdown-title');
+
+      if (difference <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        title.textContent = 'Сьогодні наш особливий день';
+        return;
+      }
+
+      const days = Math.floor(difference / 86400000);
+      const hours = Math.floor((difference / 3600000) % 24);
+      const minutes = Math.floor((difference / 60000) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      document.getElementById('days').textContent = pad(days);
+      document.getElementById('hours').textContent = pad(hours);
+      document.getElementById('minutes').textContent = pad(minutes);
+      document.getElementById('seconds').textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    document.getElementById('copyButton').addEventListener('click', async () => {
+      const details = 'Весілля Колі та Ані — 26.06.2026 о 13:00. Місце церемонії: «Романтика».';
+      try {
+        await navigator.clipboard.writeText(details);
+        showToast('Деталі запрошення скопійовано');
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = details;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+        showToast('Деталі запрошення скопійовано');
+      }
+    });
+
+    document.getElementById('calendarButton').addEventListener('click', () => {
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Wedding Invitation//UK',
+        'CALSCALE:GREGORIAN',
+        'BEGIN:VEVENT',
+        'UID:kolya-anya-wedding-20260626@example.local',
+        'DTSTAMP:20260625T090000Z',
+        'DTSTART:20260626T100000Z',
+        'DTEND:20260626T130000Z',
+        'SUMMARY:Весілля Колі та Ані',
+        'LOCATION:Романтика',
+        'DESCRIPTION:Весільна церемонія Колі та Ані. Початок о 13:00.',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'vesillia-koli-ta-ani.ics';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      showToast('Подію підготовлено для календаря');
+    });
+  </script>
+</body>
+</html>
